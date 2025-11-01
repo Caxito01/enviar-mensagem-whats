@@ -1,0 +1,95 @@
+body {
+  background: linear-gradient(120deg, #25d366 0%, #128c7e 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: #128c7e;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin: 1rem 0 0.5rem 0;
+  color: #333;
+  font-weight: 500;
+  text-align: left;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+input:focus, textarea:focus {
+  border: 1.5px solid #25d366;
+  outline: none;
+}
+
+button {
+  background: #25d366;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #128c7e;
+}
+
+#resultado {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+}
+
+#resultado a {
+  color: #128c7e;
+  text-decoration: none;
+  font-weight: bold;
+  word-break: break-all;
+}
+#resultado a:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  padding: 0.9rem 2.2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.login-btn:hover {
+  background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+}

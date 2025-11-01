@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Moderno</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-form-area">
+      <h2>Bem-vindo!</h2>
+      <form class="login-form">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required>
+        <label for="senha">Senha</label>
+        <div class="senha-container">
+          <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+          <span class="toggle-senha" onclick="toggleSenha()">
+            <svg id="olho-aberto" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"><path fill="#888" d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8a3 3 0 100 6 3 3 0 000-6z"/></svg>
+            <svg id="olho-fechado" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" style="display:none"><path fill="#888" d="M12 5c-7 0-10 7-10 7s3 7 10 7c2.21 0 4.21-.45 6-1.22l-1.46-1.46C15.41 19.07 13.77 19.5 12 19.5c-5.05 0-8.27-4.13-9.5-6.5C3.73 8.63 6.95 4.5 12 4.5c1.77 0 3.41.43 4.54 1.18l-1.46 1.46C16.21 5.45 14.21 5 12 5zm10 7s-3 7-10 7c-1.77 0-3.41-.43-4.54-1.18l1.46-1.46C7.79 18.55 9.79 19 12 19c5.05 0 8.27-4.13 9.5-6.5C20.27 15.37 17.05 19.5 12 19.5c-1.77 0-3.41-.43-4.54-1.18l1.46-1.46C7.79 18.55 9.79 19 12 19c5.05 0 8.27-4.13 9.5-6.5z"/></svg>
+          </span>
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+      <script>
+        function toggleSenha() {
+          const senhaInput = document.getElementById('senha');
+          const olhoAberto = document.getElementById('olho-aberto');
+          const olhoFechado = document.getElementById('olho-fechado');
+          if (senhaInput.type === 'password') {
+            senhaInput.type = 'text';
+            olhoAberto.style.display = 'none';
+            olhoFechado.style.display = 'inline';
+          } else {
+            senhaInput.type = 'password';
+            olhoAberto.style.display = 'inline';
+            olhoFechado.style.display = 'none';
+          }
+        }
+      </script>
+    </div>
+    <div class="login-gradient-area"></div>
+  </div>
+</body>
+</html>

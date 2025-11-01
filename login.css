@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.login-form-area {
+  flex: 1;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  box-shadow: 2px 0 24px rgba(0,0,0,0.06);
+}
+
+.login-form-area h2 {
+  color: #128c7e;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.login-form input {
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.login-form input:focus {
+  border: 1.5px solid #25d366;
+  outline: none;
+}
+
+.login-form button {
+  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.login-form button:hover {
+  background: linear-gradient(90deg, #128c7e 0%, #25d366 100%);
+}
+
+.senha-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.senha-container input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+.toggle-senha {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+.toggle-senha svg {
+  pointer-events: none;
+}
+
+.login-gradient-area {
+  flex: 1;
+  background: linear-gradient(120deg, #25d366 0%, #128c7e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .login-container {
+    flex-direction: column;
+  }
+  .login-gradient-area {
+    min-height: 200px;
+    flex: none;
+  }
+}

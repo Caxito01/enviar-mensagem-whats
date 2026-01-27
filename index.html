@@ -7,19 +7,116 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Gerador de Link para WhatsApp</h1>
+  <div class="container grande">
+    <h1>Gerador de Link para WhatsApp Caxito</h1>
     <form id="wa-form">
       <label for="numero">Número do WhatsApp (com DDD):</label>
       <input type="text" id="numero" name="numero" required placeholder="Ex: 11999999999">
-      <label for="mensagem">Mensagem:</label>
+      <div style="display: flex; align-items: center; gap: 1.2rem; margin-bottom: 0.2rem;">
+        <div id="titulo-mensagem" class="titulo-mensagem" style="display:none;"></div>
+        <label class="saudacao-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 1rem;">
+          <input type="checkbox" id="saudacao-check">
+          <span id="saudacao-text">Bom dia</span>
+        </label>
+      </div>
+      <label for="mensagem" id="label-mensagem">Mensagem:</label>
       <textarea id="mensagem" name="mensagem" required placeholder="Digite sua mensagem..."></textarea>
+      <div class="mensagens-predefinidas">
+        <label class="switch-label">
+          <input type="checkbox" class="msg-check">
+          <span class="switch"></span>
+          <span class="msg-text">Estávamos conversando no chat</span>
+        </label>
+        <label class="switch-label">
+          <input type="checkbox" class="msg-check">
+          <span class="switch"></span>
+          <span class="msg-text">Vi sua mensagem no chat</span>
+        </label>
+        <label class="switch-label">
+          <input type="checkbox" class="msg-check">
+          <span class="switch"></span>
+          <span class="msg-text">API Oficial Link</span>
+        </label>
+        <label class="switch-label">
+          <input type="checkbox" class="msg-check">
+          <span class="switch"></span>
+          <span class="msg-text">Plano com IA 1548</span>
+        </label>
+      </div>
       <button type="submit">Gerar Link</button>
     </form>
     <div id="resultado"></div>
-    <a href="login.html" class="login-btn">Ir para Login</a>
+  <button id="consultar-whatsapp" class="login-btn" type="button">Consultar WhatsApp</button>
   </div>
   <script>
+    // Comunicação com Electron para abrir donodozap.com
+    document.getElementById('consultar-whatsapp').addEventListener('click', function() {
+      if (window.require) {
+        const { ipcRenderer } = window.require('electron');
+        ipcRenderer.send('abrir-donodozap');
+      } else {
+        window.open('https://donodozap.com', '_blank');
+      }
+    });
+    // Preencher mensagem ao marcar checkbox
+    const msgChecks = document.querySelectorAll('.msg-check');
+    const msgTitles = [
+      "Estávamos conversando no chat",
+      "Vi sua mensagem no chat",
+      "API Oficial Link",
+      "PLANO COM IA 1548"
+    ];
+    const msgTexts = [
+      "Aqui é o Carlos, do Botconversa. Estávamos conversando no chat — ficou alguma dúvida, pode enviar um áudio aqui mesmo se preferir. 😊",
+      "Sou o Carlos, do Botconversa. Vi sua mensagem no chat — como posso ser útil para você? Se quiser, pode mandar um áudio aqui mesmo.",
+      "Mensal R$299:\nhttps://go.botconversa.com.br/subscribe/botconversa-pro-assistente-ia-api-oficial\n\nAnual R$2388 em até 12x R$199:\nhttps://go.botconversa.com.br/subscribe/botconversa-pro-assistentes-de-ia-api-oficial",
+      "🚀 O BOTCONVERSA FICOU AINDA MELHOR!\nSeu Assistente de IA no WhatsApp — 24h por dia, sem complicação.\n\n💰 OFERTA ESPECIAL\nDe R$ 4.997 por apenas 12x de R$ 129 (sem juros)\nOu R$ 1.548 à vista → Economia de R$ 3.449!\n✅ 30 dias de garantia incondicional\n✅ Sem riscos — não gostou, devolvemos 100%\n\n📦 O QUE VOCÊ RECEBE:\n🧠 Mentoria AO VIVO (8 encontros)\nConstrua seu Assistente de IA com nossos especialistas, passo a passo.\n🤖 1 Ano de IA ChatGPT GRÁTIS\nConversas ilimitadas, 24h por dia, sem custos extras.\n⚡ IA que entende contexto\nResponde, interpreta e se adapta a cada conversa.\n🛠️ Implementação guiada\nSem código, sem fluxos complicados.\n🤝 Suporte contínuo + atualizações\n\n🎁 BÔNUS EXCLUSIVOS:\n→ Treinamento: Múltiplos Assistentes de IA no WhatsApp\n→ Biblioteca de Modelos Prontos\n→ Acesso à Comunidade BotConversa Prime\n\n🏆 Garantia de 30 dias — Risco ZERO!\n⏳ Vagas limitadas para a mentoria!\n👉 [QUERO PARTICIPAR DA MENTORIA] link https://go.botconversa.com.br/subscribe/botconversa-pro-anual-assistente-ia-carlos"
+    ];
+    const tituloMensagem = document.getElementById('titulo-mensagem');
+    const labelMensagem = document.getElementById('label-mensagem');
+    // Saudação dinâmica
+    function getSaudacao() {
+      const hora = new Date().getHours();
+      if (hora >= 12 && hora < 18) return 'Boa tarde';
+      if (hora >= 18 || hora < 5) return 'Boa noite';
+      return 'Bom dia';
+    }
+    const saudacaoCheck = document.getElementById('saudacao-check');
+    const saudacaoText = document.getElementById('saudacao-text');
+    saudacaoText.textContent = getSaudacao();
+
+    function atualizaMensagem(idx) {
+      const mensagemInput = document.getElementById('mensagem');
+      let texto = msgTexts[idx];
+      if (saudacaoCheck.checked && idx <= 1) {
+        texto = saudacaoText.textContent + ' ' + texto.charAt(0).toLowerCase() + texto.slice(1);
+      }
+      mensagemInput.value = texto;
+    }
+
+    msgChecks.forEach((chk, idx) => {
+      chk.addEventListener('change', function() {
+        msgChecks.forEach((c, i) => { if (c !== chk) c.checked = false; });
+        if (chk.checked) {
+          atualizaMensagem(idx);
+          tituloMensagem.textContent = msgTitles[idx];
+          tituloMensagem.style.display = 'block';
+          labelMensagem.textContent = '';
+        } else {
+          document.getElementById('mensagem').value = '';
+          tituloMensagem.textContent = '';
+          tituloMensagem.style.display = 'none';
+          labelMensagem.textContent = 'Mensagem:';
+        }
+      });
+    });
+
+    saudacaoCheck.addEventListener('change', function() {
+      const idx = Array.from(msgChecks).findIndex(c => c.checked);
+      if (idx !== -1 && msgChecks[idx].checked) {
+        atualizaMensagem(idx);
+      }
+    });
     document.getElementById('wa-form').addEventListener('submit', function(e) {
       e.preventDefault();
       const numero = document.getElementById('numero').value.replace(/\D/g, '');

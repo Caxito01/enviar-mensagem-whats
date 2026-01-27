@@ -1,5 +1,24 @@
+.saudacao-label input[type="checkbox"] {
+  accent-color: #25d366;
+  width: 18px;
+  height: 18px;
+  margin: 0 0.2rem 0 0;
+}
+.saudacao-label {
+  user-select: none;
+  font-weight: 500;
+  color: #128c7e;
+}
+.titulo-mensagem {
+  font-size: 1.18rem;
+  font-weight: bold;
+  color: #128c7e;
+  margin-bottom: 0.5rem;
+  margin-top: 0.7rem;
+  text-align: left;
+}
 body {
-  background: linear-gradient(120deg, #25d366 0%, #128c7e 100%);
+  background: linear-gradient(120deg, #e8fff3 0%, #b2f7d6 100%);
   min-height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -10,12 +29,16 @@ body {
 
 .container {
   background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-  max-width: 400px;
+  padding: 2.5rem 3.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+  max-width: 540px;
   width: 100%;
   text-align: center;
+}
+.container.grande {
+  max-width: 650px;
+  padding: 3rem 4rem;
 }
 
 h1 {
@@ -75,6 +98,59 @@ button:hover {
 }
 #resultado a:hover {
   text-decoration: underline;
+}
+
+.mensagens-predefinidas {
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  font-size: 1.08rem;
+  color: #444;
+}
+.switch-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.1rem;
+  cursor: pointer;
+  gap: 1rem;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  background: #d1f5e2;
+  border-radius: 26px;
+  transition: background 0.2s;
+  margin-right: 0.7rem;
+}
+.switch:before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.switch-label input[type="checkbox"] {
+  display: none;
+}
+.switch-label input[type="checkbox"]:checked + .switch {
+  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+}
+.switch-label input[type="checkbox"]:checked + .switch:before {
+  transform: translateX(22px);
+  background: #fff;
+}
+.msg-text {
+  flex: 1;
+  color: #333;
+  font-size: 1.08rem;
+  line-height: 1.4;
 }
 
 .login-btn {

@@ -16,6 +16,8 @@
         <input type="text" id="numero" name="numero" required placeholder="Ex: 11999999999">
         <button type="button" id="colar-numero" class="paste-btn">Colar</button>
       </div>
+      <label for="nome-contato">Nome da pessoa (opcional):</label>
+      <input type="text" id="nome-contato" name="nome-contato" placeholder="Ex: João">
       <div style="display: flex; align-items: center; gap: 1.2rem; margin-bottom: 0.2rem;">
         <div id="titulo-mensagem" class="titulo-mensagem" style="display:none;"></div>
         <label class="saudacao-label" style="display: flex; align-items: center; gap: 0.4rem; font-size: 1rem;">
@@ -91,13 +93,21 @@
     }
     const saudacaoCheck = document.getElementById('saudacao-check');
     const saudacaoText = document.getElementById('saudacao-text');
+    const nomeContatoInput = document.getElementById('nome-contato');
     saudacaoText.textContent = getSaudacao();
 
     function atualizaMensagem(idx) {
       const mensagemInput = document.getElementById('mensagem');
       let texto = msgTexts[idx];
       if (saudacaoCheck.checked && idx <= 1) {
-        texto = saudacaoText.textContent + ' ' + texto.charAt(0).toLowerCase() + texto.slice(1);
+        const saudacao = saudacaoText.textContent;
+        const nomeContato = nomeContatoInput.value.trim();
+        const resto = texto.charAt(0).toLowerCase() + texto.slice(1);
+        if (nomeContato) {
+          texto = `${saudacao} ${nomeContato}, ${resto}`;
+        } else {
+          texto = `${saudacao} ${resto}`;
+        }
       }
       mensagemInput.value = texto;
     }
@@ -119,12 +129,15 @@
       });
     });
 
-    saudacaoCheck.addEventListener('change', function() {
+    function atualizaMensagemSeMarcada() {
       const idx = Array.from(msgChecks).findIndex(c => c.checked);
       if (idx !== -1 && msgChecks[idx].checked) {
         atualizaMensagem(idx);
       }
-    });
+    }
+
+    saudacaoCheck.addEventListener('change', atualizaMensagemSeMarcada);
+    nomeContatoInput.addEventListener('input', atualizaMensagemSeMarcada);
     const progressoContainer = document.getElementById('progresso-container');
     const progressoBarra = document.getElementById('progresso-barra');
     const progressoTexto = document.getElementById('progresso-texto');

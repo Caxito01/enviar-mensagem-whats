@@ -87,23 +87,24 @@ button:hover {
 
 .numero-container {
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
+  gap: 0.6rem;
+  align-items: stretch;
   margin-bottom: 1rem;
 }
 
 .numero-container input {
-  flex: 1;
+  flex: 0 0 60%;
+  max-width: 240px;
   margin-bottom: 0;
 }
 
 .paste-btn {
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1.4rem;
   border-radius: 8px;
   border: none;
   background: #e8fff3;
   color: #128c7e;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;

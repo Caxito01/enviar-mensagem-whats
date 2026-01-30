@@ -100,6 +100,30 @@ button:hover {
   text-decoration: underline;
 }
 
+/* Barra de progresso ao gerar link */
+#progresso-container {
+  margin-top: 1rem;
+  width: 100%;
+  background: #f0fdf6;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #c0eeda;
+  display: none;
+}
+
+#progresso-barra {
+  height: 10px;
+  width: 0;
+  background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
+  transition: width 0.15s linear;
+}
+
+#progresso-texto {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #128c7e;
+}
+
 .mensagens-predefinidas {
   margin-bottom: 1.5rem;
   margin-top: 0.5rem;

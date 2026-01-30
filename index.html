@@ -137,23 +137,28 @@
       // Mensagem de fallback
       resultado.innerHTML = `<a href="${link}">Se não abrir automaticamente, clique aqui para abrir o WhatsApp</a>`;
 
-      // Mostrar barra de progresso
+      // Mostrar barra de progresso (visível por ~1,5s)
       progressoContainer.style.display = 'block';
       progressoBarra.style.width = '0%';
       progressoTexto.textContent = 'Preparando WhatsApp...';
 
       let progresso = 0;
       const intervalo = setInterval(() => {
-        progresso += 12;
+        progresso += 10;
         if (progresso >= 100) {
           progresso = 100;
           clearInterval(intervalo);
           progressoTexto.textContent = 'Abrindo WhatsApp...';
-          // Abrir SEM nova aba (mesma janela/aba)
-          window.location.href = link;
+          progressoBarra.style.width = '100%';
+          // Pequeno atraso para garantir que o usuário veja a barra cheia
+          setTimeout(() => {
+            // Abrir SEM nova aba (mesma janela/aba)
+            window.location.href = link;
+          }, 300);
+        } else {
+          progressoBarra.style.width = progresso + '%';
         }
-        progressoBarra.style.width = progresso + '%';
-      }, 120);
+      }, 150);
     });
   </script>
 </body>
